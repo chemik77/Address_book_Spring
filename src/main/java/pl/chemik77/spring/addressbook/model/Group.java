@@ -20,7 +20,7 @@ public class Group implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Integer id;
 
 	@NotEmpty
 	@Size(min = 2, max = 30)
@@ -33,11 +33,11 @@ public class Group implements Serializable {
 	public Group() {
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

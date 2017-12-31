@@ -5,6 +5,7 @@ import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
 
 public abstract class AbstractDao<PK extends Serializable, T> {
 
@@ -17,10 +18,14 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	}
 
 	@PersistenceContext
-	EntityManager entityManager;
+	private EntityManager entityManager;
 
 	protected EntityManager getEntityManager() {
 		return entityManager;
+	}
+
+	protected CriteriaBuilder getCriteriaBuilder() {
+		return entityManager.getCriteriaBuilder();
 	}
 
 	protected T getByKey(PK key) {

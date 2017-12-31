@@ -15,8 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
 @Table(name = "person")
 public class Person implements Serializable {
@@ -25,7 +23,7 @@ public class Person implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@Size(min = 2, max = 30)
 	@Column(name = "first_name")
@@ -43,25 +41,23 @@ public class Person implements Serializable {
 	private String phone;
 
 	@Column(name = "birth_date")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	// @DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
 
-	@Column(name = "address")
 	@OneToOne
 	private Address address;
 
-	@Column(name = "group")
 	@ManyToMany
 	private List<Group> groups;
 
 	public Person() {
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -8,7 +8,7 @@ public interface PersonDao {
 
 	Person findById(int id);
 
-	Person findByLastName(String lastName);
+	List<Person> findByLastName(String lastName);
 
 	void savePerson(Person person);
 

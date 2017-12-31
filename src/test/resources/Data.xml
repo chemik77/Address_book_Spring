@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<person id="1" first_name="Marek" last_name="Jastar" email="jastar45@gmail.com"
+		phone="784 521 478" birth_date="1996-07-15" />
+	<person id="2" first_name="Anna" last_name="Bojd" email="anna.bojd@gmail.com"
+		phone="500 254 744" birth_date="1990-11-02" />
+	<address id="1" street="Rawicka" house_no="1" zip_code="54-522"
+		city="Wroclaw" />
+	<address id="2" street="Malajska" house_no="5/4" zip_code="00-258"
+		city="Warszawa" />
+	<person_group id="1" name="Friends" />
+	<person_group id="2" name="Family" />
+</dataset>
