@@ -11,4 +11,10 @@ public interface GroupDao {
 	Group findByName(String name);
 
 	Group findById(int id);
+
+	void saveGroup(Group group);
+
+	void deleteById(int id);
+
+	void deleteByName(String name);
 }

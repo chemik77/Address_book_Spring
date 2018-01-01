@@ -16,7 +16,7 @@ import pl.chemik77.spring.addressbook.model.Person;
 public class PersonDaoImpl extends AbstractDao<Integer, Person> implements PersonDao {
 
 	/*
-	 * SELECT P FROM Person p WHERE p.id=?
+	 * SELECT p FROM Person p WHERE p.id=?
 	 */
 	@Override
 	public Person findById(int id) {
