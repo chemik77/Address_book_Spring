@@ -25,24 +25,6 @@ public class PersonDaoImpl extends AbstractDao<Integer, Person> implements Perso
 	}
 
 	/*
-	 * SELECT p FROM Person p WHERE p.lastName=?
-	 */
-	@Override
-	public List<Person> findByLastName(String lastName) {
-
-		CriteriaBuilder cb = getCriteriaBuilder();
-		CriteriaQuery<Person> query = cb.createQuery(Person.class);
-		Root<Person> p = query.from(Person.class);
-		ParameterExpression<String> parameter = cb.parameter(String.class);
-		query.select(p).where(cb.equal(p.get("lastName"), parameter));
-		TypedQuery<Person> tq = getEntityManager().createQuery(query);
-		tq.setParameter(parameter, lastName);
-		List<Person> persons = tq.getResultList();
-		return persons;
-
-	}
-
-	/*
 	 * INSERT INTO Person VALUES (person)
 	 */
 	@Override

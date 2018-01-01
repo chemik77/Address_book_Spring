@@ -32,18 +32,6 @@ public class PersonDaoImplTest extends EntityDaoImplTest {
 	}
 
 	@Test
-	public void findByLastName() {
-		System.out.println("@Test : findByLastName");
-		List<Person> persons = personDao.findByLastName("Jastar");
-		for (Person person : persons) {
-			System.out.println(person);
-		}
-		Assert.assertEquals(persons.size(), 1);
-		Assert.assertEquals(persons.get(0).getLastName(), "Jastar");
-		Assert.assertNotNull(personDao.findByLastName("Bojd"));
-	}
-
-	@Test
 	public void savePerson() {
 		System.out.println("@Test : savePerson");
 		personDao.savePerson(getSamplePerson());
