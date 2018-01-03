@@ -40,6 +40,15 @@ public class GroupDaoImplTest extends EntityDaoImplTest {
 	}
 
 	@Test
+	public void findByNonUniqueName() {
+		System.out.println("@Test : findByNonUniqueName");
+		Group group = new Group();
+		group.setName("Friends");
+		groupDao.saveGroup(group);
+		Assert.assertNotNull(groupDao.findByName("Friends"));
+	}
+
+	@Test
 	public void findById() {
 		System.out.println("@Test : findById");
 		Assert.assertNotNull(groupDao.findById(1));
