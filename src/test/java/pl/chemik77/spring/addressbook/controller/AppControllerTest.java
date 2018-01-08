@@ -56,6 +56,20 @@ public class AppControllerTest {
 		verify(personService, atLeastOnce()).findAllPersons();
 	}
 
+	// new person
+
+	// save person with validation error
+
+	// save person with success
+
+	// edit person
+
+	// update person with validation error
+
+	// update person with success
+
+	// delete person
+
 	private List<Person> getPersonsList() {
 		Person p1 = new Person();
 		p1.setId(1);
