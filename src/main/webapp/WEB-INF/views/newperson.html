@@ -8,6 +8,42 @@
 </head>
 <body>
 	<h1>New person</h1>
-	newperson.html
+	<form action="#" th:action="@{/newperson}" method="post">
+		
+		<ul>
+  		<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+		</ul>
+		
+		<label for="firstName">First name: </label>
+		<input id="firstName" name="firstName" type="text" th:value="*{person.firstName}" /><br />
+		
+		<label for="lastName">Last name: </label>
+		<input id="lastName" name="lastName" type="text" th:value="*{person.lastName}" /><br /> 
+		
+		<label for="email">Email: </label>
+		<input id="email" name="email" type="text" th:value="*{person.email}" /><br /> 
+		
+		<label for="phone">Phone: </label>
+		<input id="phone" name="phone" type="text" th:value="*{person.phone}" /><br /> 
+		
+		<label for="birthDate">Birth date: </label>
+		<input id="birthDate" name="birthDate" type="date" th:value="*{person.birthDate}" /><br /> 
+		
+		<label for="street">Street: </label>
+		<input id="street" name="street" type="text" th:value="*{address.street}" /><br />
+		
+		<label for="houseNo">House no: </label>
+		<input id="houseNo" name="houseNo" type="text" th:value="*{address.houseNo}" /><br />
+		
+		<label for="city">City: </label>
+		<input id="city" name="city" type="text" th:value="*{address.city}" /><br />
+		
+		<label for="zipCode">Zip code: </label>
+		<input id="zipCode" name="zipCode" type="text" th:value="*{address.zipCode}" /><br />
+		
+		<input type="submit" value="Submit" />
+		<input type="reset" value="Reset" />
+	</form>
+	
 </body>
 </html>

@@ -2,25 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" media="all"
-	href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
 <title>Persons list</title>
 </head>
 <body>
 	<h1>Persons list</h1>
-	personslist.html
-	<br />
-	<br />
-	<table>
-		<tr th:each="person: ${persons}">
-			<td th:text="${person.id}" />
-			<td th:text="${person.firstName}" />
-			<td th:text="${person.lastName}" />
-
-		</tr>
+	<a href="newperson.html" th:href="@{/newperson}">New person</a>
+	<table id="personTable">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Last name</th>
+				<th>First name</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th>Birth date</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="person : ${persons}">
+				<td th:text="${person.id}" />
+				<td th:text="${person.lastName}" />
+				<td th:text="${person.firstName}" />
+				<td th:text="${person.email}" />
+				<td th:text="${person.phone}" />
+				<td th:text="${person.birthDate}" />
+				<td><a href="editperson.html"
+					th:href="@{'/edit-'+${person.id}}">Edit</a></td>
+				<td><a href="personslist.html"
+					th:href="@{'/delete-'+${person.id}}">Delete</a></td>
+			</tr>
+		</tbody>
 	</table>
-	<a href="newperson.html" th:href="@{/newperson
-	}">New person</a>
-	<a href="editperson.html" th:href="@{/edit-1}">Edit person</a>
+
 </body>
 </html>

@@ -25,6 +25,17 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
+	public void updateAddress(Address address) {
+		Address entity = findById(address.getId());
+		if (entity != null) {
+			entity.setStreet(address.getStreet());
+			entity.setHouseNo(address.getHouseNo());
+			entity.setZipCode(address.getZipCode());
+			entity.setCity(address.getCity());
+		}
+	}
+
+	@Override
 	public void deleteById(int id) {
 		dao.deleteById(id);
 	}
