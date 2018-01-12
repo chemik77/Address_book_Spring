@@ -40,8 +40,11 @@
 		<label for="zipCode">Zip code: </label>
 		<input id="zipCode" name="zipCode" type="text" th:value="*{address.zipCode}" /><br />
 		
-		<input type="submit" value="Submit" />
 		<input type="reset" value="Reset" />
+		<input type="submit" value="Submit" />
+		<br/>
+		<br/>
+		Go to <a href="personslist.html" th:href="@{/list}">Persons list</a>
 	</form>
 	
 </body>

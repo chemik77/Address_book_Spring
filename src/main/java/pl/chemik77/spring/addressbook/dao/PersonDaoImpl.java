@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
@@ -42,7 +41,7 @@ public class PersonDaoImpl extends AbstractDao<Integer, Person> implements Perso
 	}
 
 	/*
-	 * SELECT p FROM Person p ORDER BY p.lastName ASC
+	 * SELECT p FROM Person p ORDER BY p.id ASC
 	 */
 	@Override
 	public List<Person> findAllPersons() {
@@ -50,7 +49,7 @@ public class PersonDaoImpl extends AbstractDao<Integer, Person> implements Perso
 		CriteriaQuery<Person> query = cb.createQuery(Person.class);
 		Root<Person> p = query.from(Person.class);
 		query.select(p);
-		query.orderBy(cb.asc(p.get("lastName")));
+		query.orderBy(cb.asc(p.get("id")));
 		TypedQuery<Person> tq = getEntityManager().createQuery(query);
 		List<Person> persons = tq.getResultList();
 		return persons;
