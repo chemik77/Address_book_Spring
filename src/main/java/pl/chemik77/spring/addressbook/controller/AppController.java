@@ -84,7 +84,15 @@ public class AppController {
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.GET)
 	public String editPerson(@PathVariable int id, ModelMap model) {
 		Person person = personService.findById(id);
-		Address address = addressService.findById(person.getAddress().getId());
+		// Address address =
+		// addressService.findById(person.getAddress().getId());
+		Address address = null;
+		if (person.getAddress() != null) {
+			address = addressService.findById(person.getAddress().getId());
+		} else {
+			address = new Address();
+		}
+
 		model.addAttribute("person", person);
 		model.addAttribute("address", address);
 		model.addAttribute("edit", true);
@@ -97,6 +105,7 @@ public class AppController {
 		if (result.hasErrors()) {
 			return "editperson";
 		}
+		person.setAddress(address);
 		addressService.updateAddress(address);
 		personService.updatePerson(person);
 		model.addAttribute("success",

@@ -2,13 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" media="all"
-	href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
 <title>New person</title>
 </head>
 <body>
 	<h1>New person</h1>
-	<form action="#" th:action="@{/newperson}" method="post">
+	<form action="#" th:action="@{/newperson}" method="post" accept-charset="utf-8">
 		
 		<ul>
   		<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
