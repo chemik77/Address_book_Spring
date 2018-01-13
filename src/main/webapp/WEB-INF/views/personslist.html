@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 <title>Persons list</title>
 </head>
 <body>
+<div class="container">
 	<h1>Persons list</h1>
-	<a href="newperson.html" th:href="@{/newperson}">New person</a>
-	<table id="personTable">
+	<br/>
+	<a href="newperson.html" th:href="@{/newperson}" class="btn btn-outline-info" role="button">New person</a>
+	<br/><br/>
+	<table id="personTable" class="table">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -28,12 +33,12 @@
 				<td th:text="${person.phone}" />
 				<td th:text="${person.birthDate}" />
 				<td><a href="editperson.html"
-					th:href="@{'/edit-'+${person.id}}">Edit</a></td>
-				<td><a href="personslist.html"
-					th:href="@{'/delete-'+${person.id}}">Delete</a></td>
+					th:href="@{'/edit-'+${person.id}}" class="btn btn-outline-info" role="button">Edit</a>
+				<a href="personslist.html"
+					th:href="@{'/delete-'+${person.id}}" class="btn btn-outline-info" role="button">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
-
+</div>
 </body>
 </html>
