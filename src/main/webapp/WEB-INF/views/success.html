@@ -2,14 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" media="all"
 	href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
 <title>Success</title>
 </head>
 <body>
+<div class="container">
 	<h1>Success</h1>
 	<p><span th:text="${success}"></span></p>
 	<br /> 
-	Go to <a href="personslist.html" th:href="@{/list}">Persons list</a>
+	<a href="personslist.html" th:href="@{/list}" class="btn btn-outline-info" role="button">Go to Persons list</a>
+</div>
 </body>
 </html>

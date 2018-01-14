@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 <title>New person</title>
 </head>
 <body>
+<div class="container">
 	<h1>New person</h1>
 	<form action="#" th:action="@{/newperson}" method="post" accept-charset="utf-8">
 		
@@ -12,39 +15,73 @@
   		<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
 		</ul>
 		
-		<label for="firstName">First name: </label>
-		<input id="firstName" name="firstName" type="text" th:value="*{person.firstName}" /><br />
+		<div class="form-group row">
+		<label for="firstName" class="col-2 col-form-label">First name: </label>
+		<div class="col-10">
+		<input class="form-control" id="firstName" name="firstName" type="text" th:value="*{person.firstName}" />
+		</div>
+		</div>
 		
-		<label for="lastName">Last name: </label>
-		<input id="lastName" name="lastName" type="text" th:value="*{person.lastName}" /><br /> 
+		<div class="form-group row">
+		<label for="lastName" class="col-2 col-form-label">Last name: </label>
+		<div class="col-10">
+		<input class="form-control" id="lastName" name="lastName" type="text" th:value="*{person.lastName}" />
+		</div>
+		</div>
 		
-		<label for="email">Email: </label>
-		<input id="email" name="email" type="text" th:value="*{person.email}" /><br /> 
+		<div class="form-group row">
+		<label for="email" class="col-2 col-form-label">Email: </label>
+		<div class="col-10">
+		<input class="form-control" id="email" name="email" type="email" th:value="*{person.email}" />
+		</div>
+		</div>
 		
-		<label for="phone">Phone: </label>
-		<input id="phone" name="phone" type="text" th:value="*{person.phone}" /><br /> 
+		<div class="form-group row">
+		<label for="phone" class="col-2 col-form-label">Phone: </label>
+		<div class="col-10">
+		<input class="form-control" id="phone" name="phone" type="tel" th:value="*{person.phone}" />
+		</div>
+		</div>
 		
-		<label for="birthDate">Birth date: </label>
-		<input id="birthDate" name="birthDate" type="date" th:value="*{person.birthDate}" /><br /> 
+		<div class="form-group row">
+		<label for="birthDate" class="col-2 col-form-label">Birth date: </label>
+		<div class="col-10">
+		<input class="form-control" id="birthDate" name="birthDate" type="date" th:value="*{person.birthDate}" />
+		</div>
+		</div>
 		
-		<label for="street">Street: </label>
-		<input id="street" name="street" type="text" th:value="*{address.street}" /><br />
+		<div class="form-group row">
+		<label for="street" class="col-2 col-form-label">Street: </label>
+		<div class="col-10">
+		<input class="form-control" id="street" name="street" type="text" th:value="*{address.street}" />
+		</div>
+		</div>
 		
-		<label for="houseNo">House no: </label>
-		<input id="houseNo" name="houseNo" type="text" th:value="*{address.houseNo}" /><br />
+		<div class="form-group row">
+		<label for="houseNo" class="col-2 col-form-label">House no: </label>
+		<div class="col-10">
+		<input class="form-control" id="houseNo" name="houseNo" type="text" th:value="*{address.houseNo}" />
+		</div>
+		</div>
 		
-		<label for="city">City: </label>
-		<input id="city" name="city" type="text" th:value="*{address.city}" /><br />
+		<div class="form-group row">
+		<label for="city" class="col-2 col-form-label">City: </label>
+		<div class="col-10">
+		<input class="form-control" id="city" name="city" type="text" th:value="*{address.city}" />
+		</div>
+		</div>
 		
-		<label for="zipCode">Zip code: </label>
-		<input id="zipCode" name="zipCode" type="text" th:value="*{address.zipCode}" /><br />
+		<div class="form-group row">
+		<label for="zipCode" class="col-2 col-form-label">Zip code: </label>
+		<div class="col-10">
+		<input class="form-control" id="zipCode" name="zipCode" type="text" th:value="*{address.zipCode}" />
+		</div>
+		</div>
 		
-		<input type="reset" value="Reset" />
-		<input type="submit" value="Submit" />
-		<br/>
-		<br/>
-		Go to <a href="personslist.html" th:href="@{/list}">Persons list</a>
+		<a href="personslist.html" th:href="@{/list}" class="btn btn-outline-info" role="button">Cancel</a>
+		<input type="reset" value="Clear" class="btn btn-outline-info" />
+		<input type="submit" value="Submit" class="btn btn-outline-info" />
 	</form>
-	
+</div>
 </body>
 </html>
