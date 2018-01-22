@@ -68,10 +68,12 @@ public class AppController {
 	public String editPerson(@PathVariable int id, ModelMap model) {
 		Person person = personService.findById(id);
 		Address address = addressService.findById(person.getAddress().getId());
-		List<Group> groups = person.getGroups();
+		List<Group> allGroups = initializeGroups();
+		List<Group> selectedGroups = person.getGroups();
 		model.addAttribute("person", person);
 		model.addAttribute("address", address);
-		model.addAttribute("groups", groups);
+		model.addAttribute("groups", allGroups);
+		model.addAttribute("selectedGroups", selectedGroups);
 		model.addAttribute("edit", true);
 		return "editperson";
 	}

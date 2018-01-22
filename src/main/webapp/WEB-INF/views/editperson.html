@@ -82,8 +82,11 @@
 		<div class="form-group row">
 		<label for="groups" class="col-2 col-form-label">Groups: </label>
 		<div class="col-10">
-		<select th:field="*{groups}" multiple="multiple">
-		<option class="form-control" id="groups" th:each="group: ${groups}" th:value="${group.id}" th:text="${group.name}" />
+		<select id="groups" name="groups" multiple="multiple" class="form-control">
+		<option th:each="group: ${groups}" 
+		th:selected="${selectedGroups.contains(group)}"
+		th:value="${group}" 
+		th:text="${group.name}" />
 		</select>
 		</div>
 		</div>
