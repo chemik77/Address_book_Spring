@@ -1,11 +1,13 @@
 package pl.chemik77.spring.addressbook.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
@@ -14,11 +16,16 @@ import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
+import pl.chemik77.spring.addressbook.converter.GroupFormatter;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.chemik77.spring.addressbook")
 public class AppConfig implements WebMvcConfigurer {
 
+	@Autowired
+	private GroupFormatter formatter;
+	
 	private ApplicationContext applicationContext;
 
 	public ApplicationContext getApplicationContext() {
@@ -27,6 +34,12 @@ public class AppConfig implements WebMvcConfigurer {
 
 	public void setApplicationContext(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
+	}
+
+	@Override
+	public void addFormatters(FormatterRegistry registry) {
+		registry.addFormatter(formatter);
+		WebMvcConfigurer.super.addFormatters(registry);
 	}
 
 	@Bean

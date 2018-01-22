@@ -53,6 +53,14 @@ public class AddressServiceImplTest {
 	}
 
 	@Test
+	public void updateAddress() {
+		Address address = addresses.get(0);
+		when(dao.findById(anyInt())).thenReturn(address);
+		addressService.updateAddress(address);
+		verify(dao, atLeastOnce()).findById(anyInt());
+	}
+
+	@Test
 	public void deleteById() {
 		doNothing().when(dao).deleteById(anyInt());
 		addressService.deleteById(anyInt());

@@ -18,7 +18,7 @@ import pl.chemik77.spring.addressbook.model.Group;
 public class GroupDaoImpl extends AbstractDao<Integer, Group> implements GroupDao {
 
 	/*
-	 * SELECT g FROM Group g ORDER BY g.name ASC
+	 * SELECT g FROM Group g ORDER BY g.id ASC
 	 */
 	@Override
 	public List<Group> findAll() {
@@ -26,7 +26,7 @@ public class GroupDaoImpl extends AbstractDao<Integer, Group> implements GroupDa
 		CriteriaQuery<Group> query = cb.createQuery(Group.class);
 		Root<Group> g = query.from(Group.class);
 		query.select(g);
-		query.orderBy(cb.asc(g.get("name")));
+		query.orderBy(cb.asc(g.get("id")));
 		TypedQuery<Group> tq = getEntityManager().createQuery(query);
 		List<Group> groups = tq.getResultList();
 		return groups;
@@ -88,6 +88,19 @@ public class GroupDaoImpl extends AbstractDao<Integer, Group> implements GroupDa
 	public void deleteByName(String name) {
 		Group group = findByName(name);
 		delete(group);
+	}
+
+	@Override
+	public void initFirstGroups() {
+		Group g1 = new Group();
+		g1.setName("Family");
+		saveGroup(g1);
+		Group g2 = new Group();
+		g2.setName("Friends");
+		saveGroup(g2);
+		Group g3 = new Group();
+		g3.setName("Coworkers");
+		saveGroup(g3);
 	}
 
 }

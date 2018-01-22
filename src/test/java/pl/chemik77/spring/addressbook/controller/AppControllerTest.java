@@ -22,8 +22,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import pl.chemik77.spring.addressbook.model.Address;
+import pl.chemik77.spring.addressbook.model.Group;
 import pl.chemik77.spring.addressbook.model.Person;
 import pl.chemik77.spring.addressbook.service.AddressService;
+import pl.chemik77.spring.addressbook.service.GroupService;
 import pl.chemik77.spring.addressbook.service.PersonService;
 
 public class AppControllerTest {
@@ -34,6 +36,9 @@ public class AppControllerTest {
 	@Mock
 	AddressService addressService;
 
+	@Mock
+	GroupService groupService;
+
 	@InjectMocks
 	AppController appController;
 
@@ -42,6 +47,9 @@ public class AppControllerTest {
 
 	@Spy
 	List<Address> addresses = new ArrayList<>();
+
+	@Spy
+	List<Group> groups = new ArrayList<>();
 
 	@Spy
 	ModelMap model;
@@ -54,6 +62,7 @@ public class AppControllerTest {
 		MockitoAnnotations.initMocks(this);
 		addresses = getAddressesList();
 		persons = getPersonsList();
+		groups = getGroupsList();
 	}
 
 	@Test
@@ -69,6 +78,7 @@ public class AppControllerTest {
 		Assert.assertEquals(appController.newPerson(model), "newperson");
 		Assert.assertNotNull(model.get("person"));
 		Assert.assertNotNull(model.get("address"));
+		Assert.assertNotNull(model.get("groups"));
 		Assert.assertFalse((Boolean) model.get("edit"));
 	}
 
@@ -76,7 +86,8 @@ public class AppControllerTest {
 	public void savePersonWithValidationError() {
 		when(result.hasErrors()).thenReturn(true);
 		doNothing().when(personService).savePerson(any(Person.class));
-		Assert.assertEquals(appController.savePerson(persons.get(0), addresses.get(0), result, model), "newperson");
+		Assert.assertEquals(appController.savePerson(persons.get(0), addresses.get(0), getGroupsList(), result, model),
+				"newperson");
 	}
 
 	@Test
@@ -84,7 +95,8 @@ public class AppControllerTest {
 		when(result.hasErrors()).thenReturn(false);
 		doNothing().when(addressService).saveAddress(any(Address.class));
 		doNothing().when(personService).savePerson(any(Person.class));
-		Assert.assertEquals(appController.savePerson(persons.get(0), addresses.get(0), result, model), "success");
+		Assert.assertEquals(appController.savePerson(persons.get(0), addresses.get(0), getGroupsList(), result, model),
+				"success");
 		Assert.assertEquals(model.get("success"), "Person TestFirstName1 TestLastName1 registered successfully");
 	}
 
@@ -169,5 +181,19 @@ public class AppControllerTest {
 		addresses.add(a1);
 		addresses.add(a2);
 		return addresses;
+	}
+
+	private List<Group> getGroupsList() {
+		Group g1 = new Group();
+		g1.setId(1);
+		g1.setName("Family");
+		groups.add(g1);
+
+		Group g2 = new Group();
+		g2.setId(2);
+		g2.setName("Friends");
+		groups.add(g2);
+
+		return groups;
 	}
 }

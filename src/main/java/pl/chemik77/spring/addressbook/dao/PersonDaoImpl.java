@@ -1,5 +1,6 @@
 package pl.chemik77.spring.addressbook.dao;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -20,8 +21,18 @@ public class PersonDaoImpl extends AbstractDao<Integer, Person> implements Perso
 	@Override
 	public Person findById(int id) {
 		Person person = getByKey(id);
+		if (person != null ) {
+			initializeCollection(person.getGroups());
+		}
 		return person;
 	}
+	
+    private void initializeCollection(Collection<?> collection) {
+        if(collection == null) {
+            return;
+        }
+        collection.iterator().hasNext();
+    }
 
 	/*
 	 * INSERT INTO Person VALUES (person)

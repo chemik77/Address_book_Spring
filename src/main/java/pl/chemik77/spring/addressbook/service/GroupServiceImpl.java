@@ -45,5 +45,10 @@ public class GroupServiceImpl implements GroupService {
 	public void deleteByName(String name) {
 		dao.deleteByName(name);
 	}
+
+	@Override
+	public void initFirstGroups() {
+		dao.initFirstGroups();
+	}
 	
 }

@@ -18,4 +18,5 @@ public interface GroupService {
 
 	void deleteByName(String name);
 
+	void initFirstGroups();
 }

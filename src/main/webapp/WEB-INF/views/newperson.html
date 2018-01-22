@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://www.springframework.org/tags/form">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -78,6 +78,18 @@
 		</div>
 		</div>
 		
+		<div class="form-group row">
+		<label for="groups" class="col-2 col-form-label">Groups: </label>
+		<div class="col-10">
+		<select class="form-control" id="groups" name="groups" multiple="multiple">
+		<option th:each="group : ${groups}"
+				th:value="${group.id}"
+				th:text="${group.name}" />
+		</select>
+		<a href="newgroup.html" th:href="@{/newgroup}" class="btn btn-outline-info" role="button">+</a>
+		</div>
+		</div>
+		 
 		<a href="personslist.html" th:href="@{/list}" class="btn btn-outline-info" role="button">Cancel</a>
 		<input type="reset" value="Clear" class="btn btn-outline-info" />
 		<input type="submit" value="Submit" class="btn btn-outline-info" />

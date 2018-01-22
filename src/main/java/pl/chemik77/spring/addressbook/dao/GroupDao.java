@@ -17,4 +17,6 @@ public interface GroupDao {
 	void deleteById(int id);
 
 	void deleteByName(String name);
+	
+	void initFirstGroups();
 }
