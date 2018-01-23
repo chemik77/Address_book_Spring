@@ -79,7 +79,7 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.POST)
-	public String updatePerson(@Valid Person person, @Valid Address address, BindingResult result, ModelMap model,
+	public String updatePerson(@Valid Person person, @Valid Address address, @ModelAttribute("groups") List<Group> groups, BindingResult result, ModelMap model,
 			@PathVariable int id) {
 		if (result.hasErrors()) {
 			return "editperson";

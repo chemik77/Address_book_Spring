@@ -85,7 +85,7 @@
 		<select id="groups" name="groups" multiple="multiple" class="form-control">
 		<option th:each="group: ${groups}" 
 		th:selected="${selectedGroups.contains(group)}"
-		th:value="${group}" 
+		th:value="${group.id}" 
 		th:text="${group.name}" />
 		</select>
 		</div>

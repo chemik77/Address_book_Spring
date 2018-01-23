@@ -118,7 +118,7 @@ public class AppControllerTest {
 	public void updatePersonWithValidationError() {
 		when(result.hasErrors()).thenReturn(true);
 		doNothing().when(personService).updatePerson(any(Person.class));
-		Assert.assertEquals(appController.updatePerson(persons.get(0), addresses.get(0), result, model, 0),
+		Assert.assertEquals(appController.updatePerson(persons.get(0), addresses.get(0), groups, result, model, 0),
 				"editperson");
 	}
 
@@ -128,7 +128,7 @@ public class AppControllerTest {
 		when(result.hasErrors()).thenReturn(false);
 		doNothing().when(addressService).updateAddress(any(Address.class));
 		doNothing().when(personService).updatePerson(any(Person.class));
-		Assert.assertEquals(appController.updatePerson(persons.get(0), addresses.get(0), result, model, 0), "success");
+		Assert.assertEquals(appController.updatePerson(persons.get(0), addresses.get(0), groups, result, model, 0), "success");
 		Assert.assertEquals(model.get("success"), "Person TestFirstName1 TestLastName1 updated successfully");
 	}
 
