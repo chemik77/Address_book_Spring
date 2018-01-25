@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,6 +24,8 @@ import pl.chemik77.spring.addressbook.service.PersonService;
 @RequestMapping("/")
 public class AppController {
 
+	private static final Logger logger = LoggerFactory.getLogger(AppController.class);
+	
 	@Autowired
 	PersonService personService;
 
@@ -61,6 +65,8 @@ public class AppController {
 		personService.savePerson(person);
 		model.addAttribute("success",
 				"Person " + person.getFirstName() + " " + person.getLastName() + " registered successfully");
+		logger.debug("Add new person: " + person);
+		logger.debug("Add new address: " + address);
 		return "success";
 	}
 
@@ -75,6 +81,8 @@ public class AppController {
 		model.addAttribute("groups", allGroups);
 		model.addAttribute("selectedGroups", selectedGroups);
 		model.addAttribute("edit", true);
+		logger.debug("Edit person: " + person);
+		logger.debug("Edit address: " + address);
 		return "editperson";
 	}
 
@@ -89,12 +97,16 @@ public class AppController {
 		personService.updatePerson(person);
 		model.addAttribute("success",
 				"Person " + person.getFirstName() + " " + person.getLastName() + " updated successfully");
+		logger.debug("Update person: " + person);
+		logger.debug("Update address: " + address);
 		return "success";
 	}
 
 	@RequestMapping(value = "/delete-{id}", method = RequestMethod.GET)
 	public String deletePerson(@PathVariable int id) {
 		personService.deletePersonById(id);
+		Person person = personService.findById(id);
+		logger.debug("Delete person: " + person);
 		return "redirect:/list";
 	}
 
@@ -106,11 +118,12 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/newgroup", method = RequestMethod.POST)
-	public String saveGroupOnNew(@Valid Group group, BindingResult result, ModelMap model) {
+	public String saveGroup(@Valid Group group, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
 			return "newgroup";
 		}
 		groupService.saveGroup(group);
+		logger.debug("Add new group: " + group);
 		return "redirect:/newperson";
 	}
 
